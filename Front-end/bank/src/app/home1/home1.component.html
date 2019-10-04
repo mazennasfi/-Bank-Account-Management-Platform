@@ -1,0 +1,59 @@
+<app-appheader *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appheader>
+
+
+
+<section class="content-wrapper">
+  <div class="form-group">
+    <small  *ngIf='invalidLogin' class="text-center">{{errorMessage}}</small>
+    <table class="table table-striped">
+      <tr>
+        <th><label  for="exampleInputEmail1">Introduire le nom du client de BankIn</label>
+        </th>
+        
+      
+
+      
+        <th> <input *ngIf="hardcodedAuthentication.isUserLoggedIn()" [(ngModel)]="clientName" class="form-control">
+        </th>
+        
+      
+      
+        <td>
+          <button *ngIf="hardcodedAuthentication.isUserLoggedIn()" (click)=handleLogin()
+          type="button" class="btn btn-primary">Valider</button>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td><td></td>
+        <td></td><td></td>
+        <td></td><td></td>
+        <td></td>
+      </tr>
+    </table>
+  
+    <section class="content">
+      <h1 *ngIf="!hardcodedAuthentication.isUserLoggedIn()" class="text-xl-center">Desolé! Vous vous n'êtes pas
+        connecté.</h1>
+      <br>
+
+      <button *ngIf="!hardcodedAuthentication.isUserLoggedIn()" routerLink="/"  class="btn btn-success btn-block btn-flat">Se
+        connecter</button>
+
+    </section>
+  </div>
+</section>
+
+<app-appfooter></app-appfooter>

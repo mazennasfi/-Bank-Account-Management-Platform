@@ -1,0 +1,56 @@
+<app-appheader *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appheader>
+<app-appmenu *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appmenu>
+
+<div class="content-wrapper">
+    
+    
+    <h1 *ngIf="!hardcodedAuthentication.isUserLoggedIn()" class="text-xl-center">Desolé! Vous vous n'êtes pas connecté.
+    </h1>
+    <br>
+    <button *ngIf="!hardcodedAuthentication.isUserLoggedIn()" routerLink="/" class="btn btn-lg btn-primary">Se
+      connecter</button>
+    <div class="container">
+        
+     
+      <fieldset>
+        <label>Solde: </label>
+        <input [(ngModel)]="solde" class="form-control" placeholder="Solde">
+       
+      </fieldset>
+      <br>
+      
+          <label>Type de compte</label>
+          <form>
+              <input type="radio" name="type" value="Courant" (click)="setradio('Courant')"> Compte courant<br>
+              <input type="radio" name="type" value="Epargne" (click)="setradio('Epargne')"> Compte epargne
+            </form>
+   
+      
+        <br>
+        <fieldset >
+          <div *ngIf="!bool()">
+              <label >Taux</label>
+              <input [(ngModel)]="taux" class="form-control" placeholder="Taux">
+              
+          </div>
+            
+        
+       
+        <div *ngIf="bool()">
+            <label >Découvert</label>
+            <input [(ngModel)]="decouvert" class="form-control" placeholder="Decouvert">
+            
+           
+        </div>
+            
+        </fieldset>
+        <br>
+
+  
+ 
+    
+        <button  (click)=handleOperation() class="btn btn-primary">Submit</button>
+    
+  </div>
+</div>
+<app-appfooter></app-appfooter>

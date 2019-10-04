@@ -1,0 +1,64 @@
+<app-appheader *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appheader>
+<app-appmenu *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appmenu>
+
+<div class="content-wrapper">
+
+  <h1 *ngIf="!hardcodedAuthentication.isUserLoggedIn()" class="text-xl-center">Desolé! Vous vous n'êtes pas connecté.
+  </h1>
+  <br>
+  <button *ngIf="!hardcodedAuthentication.isUserLoggedIn()" routerLink="/" class="btn btn-lg btn-primary">Se
+    connecter</button>
+  <table *ngIf="hardcodedAuthentication.isUserLoggedIn()" class="table table-striped">
+
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Type </th>
+        <th scope="col">Code du compte</th>
+        <th scope="col">Solde (<span class="fa fa-euro"></span>)</th>
+        <th scope="col">Date de creation</th>
+        <th scope="col">Operation</th>
+        <th scope="col">Montant (<span class="fa fa-euro"></span>)</th>
+        <th scope="col">Code du compte bénéficiaire(Virement)</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let compte of comptes">
+        <th scope="row">{{compte.type}}</th>
+        <td>{{compte.codeCompte}}</td>
+        <td>{{compte.solde}}</td>
+        <td>{{compte.dateCreation}}</td>
+        <td>
+          <form>
+            <input type="radio" name="type" value="Versement" (click)="setradio('Versement')" > Versement<br>
+            <input type="radio" name="type" value="Retrait" (click)="setradio('Retrait')"> Retrait<br>
+            <input type="radio" name="type" value="Virement" (click)="setradio('Virement')"> Virement
+          </form>
+        </td>
+        <td>
+          <div class="form-group has-feedback">
+            <input *ngIf="bool1(compte)" [(ngModel)]="montant1"  class="form-control" placeholder="Montant">
+            <input *ngIf="!bool1(compte)" [(ngModel)]="montant2"  class="form-control" placeholder="Montant">
+            
+          </div>
+
+        </td>
+        <td  >
+          
+            
+            <input  *ngIf="bool1(compte)"  [(ngModel)]="codeCompte2a" class="form-control" placeholder="Insérer le code du compte en cas de virement">
+            <input  *ngIf="!bool1(compte)" [(ngModel)]="codeCompte2b" class="form-control" placeholder="Insérer le code du compte en cas de virement">
+          
+        </td>
+        <td><button (click)=handleOperation(compte.codeCompte)
+            class="btn btn-success btn-block btn-flat">Valider</button>
+
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<app-appfooter></app-appfooter>

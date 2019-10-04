@@ -1,0 +1,16 @@
+<app-appheader *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appheader>
+<app-appmenu *ngIf="hardcodedAuthentication.isUserLoggedIn()"></app-appmenu>
+
+<div class="content-header">
+    <!-- Content Header (Page header) -->
+    
+
+    <!-- Main content -->
+    <section class="content">
+            <h1 *ngIf="!hardcodedAuthentication.isUserLoggedIn()" class="text-xl-center">Desolé! Vous vous n'êtes pas connecté.</h1>
+            <br>
+            <button *ngIf="!hardcodedAuthentication.isUserLoggedIn()" routerLink="/" class="btn btn-lg btn-primary">Se connecter</button>
+    </section>
+</div>
+
+<app-appfooter></app-appfooter>
